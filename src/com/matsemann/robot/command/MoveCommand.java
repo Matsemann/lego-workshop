@@ -1,8 +1,8 @@
-package com.matsemann.robot.commands;
+package com.matsemann.robot.command;
 
 import com.matsemann.robot.Robot;
 
-public class MoveCommand extends Command {
+public class MoveCommand extends RobotCommand {
 
     private Robot robot;
 
@@ -31,6 +31,7 @@ public class MoveCommand extends Command {
 
         } else {
             int i = Integer.parseInt(amount);
+            // rotate, immediateReturn = true
         }
     }
 }

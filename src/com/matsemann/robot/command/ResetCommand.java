@@ -1,8 +1,8 @@
-package com.matsemann.robot.commands;
+package com.matsemann.robot.command;
 
 import com.matsemann.robot.Robot;
 
-public class ResetCommand extends Command {
+public class ResetCommand extends RobotCommand {
 
     public ResetCommand(Robot robot) {
         super(robot);

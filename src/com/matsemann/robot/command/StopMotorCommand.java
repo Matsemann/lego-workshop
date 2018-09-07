@@ -1,8 +1,8 @@
-package com.matsemann.robot.commands;
+package com.matsemann.robot.command;
 
 import com.matsemann.robot.Robot;
 
-public class StopMotorCommand extends Command {
+public class StopMotorCommand extends RobotCommand {
 
     public StopMotorCommand(Robot robot) {
         super(robot);

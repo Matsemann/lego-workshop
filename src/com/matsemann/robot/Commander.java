@@ -1,9 +1,9 @@
 package com.matsemann.robot;
 
-import com.matsemann.robot.commands.Command;
-import com.matsemann.robot.commands.MoveCommand;
-import com.matsemann.robot.commands.ResetCommand;
-import com.matsemann.robot.commands.StopMotorCommand;
+import com.matsemann.robot.command.RobotCommand;
+import com.matsemann.robot.command.MoveCommand;
+import com.matsemann.robot.command.ResetCommand;
+import com.matsemann.robot.command.StopMotorCommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class Commander {
 
-    List<Command> commands = new ArrayList<>();
+    List<RobotCommand> commands = new ArrayList<>();
 
     public Commander(Robot robot) {
         commands.add(new ResetCommand(robot));
@@ -26,7 +26,7 @@ public class Commander {
         for (int i = 0; i < inputs.length; i++) {
             String[] commandInput = inputs[i].split(":");
 
-            Optional<Command> command = commands.stream()
+            Optional<RobotCommand> command = commands.stream()
                     .filter(c -> c.canHandle(commandInput[0]))
                     .findFirst();
 
@@ -34,7 +34,7 @@ public class Commander {
                 try {
                     command.get().handle(commandInput);
                 } catch (RuntimeException e) {
-                    System.out.println("Command \"" + inputs[i] + "\" failed with: ");
+                    System.out.println("RobotCommand \"" + inputs[i] + "\" failed with: ");
                     e.printStackTrace();
                 }
             } else {

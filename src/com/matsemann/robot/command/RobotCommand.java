@@ -1,14 +1,14 @@
-package com.matsemann.robot.commands;
+package com.matsemann.robot.command;
 
 import com.matsemann.robot.Robot;
 
 import java.util.List;
 
-public abstract class Command {
+public abstract class RobotCommand {
 
     protected Robot robot;
 
-    public Command(Robot robot) {
+    public RobotCommand(Robot robot) {
         this.robot = robot;
     }
 
