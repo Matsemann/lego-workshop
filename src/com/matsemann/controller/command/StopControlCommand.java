@@ -4,20 +4,19 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 
-public class MoveControlCommand implements ControlCommand {
+public class StopControlCommand implements ControlCommand {
 
-    private String motor, angle;
+    private String motor;
 
     @Override
     public String getName() {
-        return "move";
+        return "stop";
     }
 
     @Override
     public List<Option> getOptions() {
         return asList(
-                new Option("motor", asList("A", "B", "C", "D")),
-                new Option("angle", asList("forwards", "backwards", "15", "30", "45", "60", "90", "120", "180", "360", "-360", "-180", "-120", "-90", "-60", "-45", "-30", "-15"))
+                new Option("motor", asList("A", "B", "C", "D", "all"))
         );
     }
 
@@ -25,13 +24,11 @@ public class MoveControlCommand implements ControlCommand {
     public void setOption(String name, String value) {
         if (name.equals("motor")) {
             motor = value;
-        } else {
-            angle = value;
         }
     }
 
     @Override
     public String getRobotCommand() {
-        return getName() + ":" + motor + ":" + angle;
+        return getName() + ":" + motor;
     }
 }
