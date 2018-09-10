@@ -8,6 +8,13 @@ public class StopControlCommand implements ControlCommand {
 
     private String motor;
 
+    public StopControlCommand() {
+    }
+
+    public StopControlCommand(String motor) {
+        this.motor = motor;
+    }
+
     @Override
     public String getName() {
         return "stop";

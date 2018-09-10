@@ -6,7 +6,17 @@ import static java.util.Arrays.asList;
 
 public class MoveControlCommand implements ControlCommand {
 
-    private String motor, angle;
+    private String motor;
+    private String angle;
+
+    public MoveControlCommand() {
+
+    }
+
+    public MoveControlCommand(String motor, String angle) {
+        this.motor = motor;
+        this.angle = angle;
+    }
 
     @Override
     public String getName() {
