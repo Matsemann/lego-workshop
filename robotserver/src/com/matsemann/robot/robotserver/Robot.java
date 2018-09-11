@@ -1,4 +1,4 @@
-package com.matsemann.robot;
+package com.matsemann.robot.robotserver;
 
 public interface Robot {
 

@@ -1,6 +1,6 @@
-package com.matsemann.robot.command;
+package com.matsemann.robot.robotserver.command;
 
-import com.matsemann.robot.Robot;
+import com.matsemann.robot.robotserver.Robot;
 
 public class ResetCommand extends RobotCommand {
 

@@ -1,13 +1,12 @@
-package com.matsemann.robot;
+package com.matsemann.robot.robotserver;
 
-import com.matsemann.robot.command.RobotCommand;
-import com.matsemann.robot.command.MoveCommand;
-import com.matsemann.robot.command.ResetCommand;
-import com.matsemann.robot.command.StopMotorCommand;
+import com.matsemann.robot.robotserver.command.MoveCommand;
+import com.matsemann.robot.robotserver.command.ResetCommand;
+import com.matsemann.robot.robotserver.command.RobotCommand;
+import com.matsemann.robot.robotserver.command.StopMotorCommand;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Commander {
 
@@ -26,21 +25,25 @@ public class Commander {
         for (int i = 0; i < inputs.length; i++) {
             String[] commandInput = inputs[i].split(":");
 
-            Optional<RobotCommand> command = commands.stream()
-                    .filter(c -> c.canHandle(commandInput[0]))
-                    .findFirst();
+            RobotCommand handler = null;
 
-            if (command.isPresent()) {
+            for (RobotCommand command : commands) {
+                if (command.canHandle(commandInput[0])) {
+                    handler = command;
+                    break;
+                }
+            }
+
+            if (handler != null) {
                 try {
-                    command.get().handle(commandInput);
+                    handler.handle(commandInput);
                 } catch (RuntimeException e) {
                     System.out.println("RobotCommand \"" + inputs[i] + "\" failed with: ");
                     e.printStackTrace();
                 }
-            } else {
+            }  else {
                 System.out.println("No command found for: \"" + inputs[i] + "\"");
             }
-
 
 
         }

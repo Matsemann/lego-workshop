@@ -1,4 +1,4 @@
-package com.matsemann.controller.command;
+package com.matsemann.robot.controller.command;
 
 import java.util.List;
 

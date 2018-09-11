@@ -1,7 +1,7 @@
-package com.matsemann.controller;
+package com.matsemann.robot.controller;
 
-import com.matsemann.controller.command.CommandHandler;
-import com.matsemann.controller.command.DefaultKeybindings;
+import com.matsemann.robot.controller.command.CommandHandler;
+import com.matsemann.robot.controller.command.DefaultKeybindings;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -23,7 +23,8 @@ public class LegoController extends Application {
         primaryStage.setTitle("Matsemann's LEGO Controller");
 
 
-        Scene scene = new Scene(new Button("laal"), 300, 250);
+        Button button = new Button("laal");
+        Scene scene = new Scene(button, 300, 250);
 
 
         primaryStage.setScene(scene);
