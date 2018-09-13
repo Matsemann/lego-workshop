@@ -22,7 +22,7 @@ public class LegoView extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/mainview/MainView.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Matsemann's LEGO Controller");
         primaryStage.setScene(scene);
         primaryStage.show();
 

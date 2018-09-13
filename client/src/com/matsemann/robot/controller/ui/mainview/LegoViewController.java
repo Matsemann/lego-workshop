@@ -1,17 +1,11 @@
 package com.matsemann.robot.controller.ui.mainview;
 
-import com.matsemann.robot.controller.command.CommandCreator;
-import com.matsemann.robot.controller.command.CommandHandler;
+import com.matsemann.robot.controller.command.*;
 import com.matsemann.robot.controller.command.CommandHandler.CommandEvent;
 import com.matsemann.robot.controller.command.CommandHandler.KeyEventCommands;
-import com.matsemann.robot.controller.command.ControlCommand;
-import com.matsemann.robot.controller.command.DefaultKeybindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -85,6 +79,13 @@ public class LegoViewController implements EventHandler<CommandEvent> {
             vBox.getChildren().add(singleCommandView);
         }
 
+        Button plus = new Button("+");
+        plus.setOnAction(event -> {
+            commandHandler.addCommandToButton(commands.key, keyUp, new EmptyCommand());
+        });
+
+        vBox.getChildren().add(plus);
+
         return vBox;
     }
 
@@ -114,6 +115,12 @@ public class LegoViewController implements EventHandler<CommandEvent> {
 
             pane.getChildren().addAll(new Label(option.name), optionBox);
         });
+
+        Button fjern = new Button("Fjern");
+        fjern.setOnAction(event -> {
+            commandHandler.removeCommandFromButton(key, keyUp, index);
+        });
+        pane.getChildren().add(fjern);
 
         return pane;
     }

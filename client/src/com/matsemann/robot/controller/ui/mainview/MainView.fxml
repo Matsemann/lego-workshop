@@ -2,32 +2,38 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.matsemann.robot.controller.ui.mainview.LegoViewController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.matsemann.robot.controller.ui.mainview.LegoViewController">
     <children>
-        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="0.0">
             <center>
-                <SplitPane fx:id="mainSplitPane" dividerPositions="0.5" orientation="VERTICAL" BorderPane.alignment="CENTER">
+                <SplitPane fx:id="mainSplitPane" dividerPositions="0.5" orientation="VERTICAL"
+                           BorderPane.alignment="CENTER">
                     <items>
-                        <GridPane fx:id="mainGrid">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints />
-                            </rowConstraints>
-                        </GridPane>
+                        <ScrollPane fitToWidth="true">
+                            <GridPane fx:id="mainGrid">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="NEVER" minWidth="100.0"/>
+                                    <ColumnConstraints hgrow="ALWAYS" minWidth="350.0" prefWidth="350.0"/>
+                                    <ColumnConstraints hgrow="ALWAYS" minWidth="350.0" prefWidth="350.0"/>
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints/>
+                                </rowConstraints>
+                            </GridPane>
+                        </ScrollPane>
                         <SplitPane fx:id="consolePane" dividerPositions="0.5">
                             <items>
                                 <Pane fx:id="leftConsole">
                                     <children>
-                                        <Label text="Balla" />
+                                        <Label text="Balla"/>
                                     </children>
                                 </Pane>
                                 <Pane fx:id="rightConsole">
                                     <children>
-                                        <Label text="Halla" />
+                                        <Label text="Halla"/>
                                     </children>
                                 </Pane>
                             </items>
@@ -38,10 +44,11 @@
             <bottom>
                 <HBox BorderPane.alignment="CENTER">
                     <children>
-                        <Button mnemonicParsing="false" text="Grid" />
-                        <Button mnemonicParsing="false" onAction="#reset" text="Reset" />
-                        <Region HBox.hgrow="ALWAYS" />
-                        <ToggleButton fx:id="consoleToggle" mnemonicParsing="false" onAction="#handleToggleButton" text="ToggleButton" />
+                        <Button mnemonicParsing="false" text="Grid"/>
+                        <Button mnemonicParsing="false" onAction="#reset" text="Reset"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <ToggleButton fx:id="consoleToggle" mnemonicParsing="false" onAction="#handleToggleButton"
+                                      text="ToggleButton"/>
                     </children>
                 </HBox>
             </bottom>
