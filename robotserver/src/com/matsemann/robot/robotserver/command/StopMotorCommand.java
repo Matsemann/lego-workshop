@@ -20,7 +20,7 @@ public class StopMotorCommand extends RobotCommand {
         // stop:all
 
         if (command[1].equals("all")) {
-            getMotors().forEach(Robot.Motor::stop);
+//            getMotors().forEach(Robot.Motor::stop);
         } else {
             getMotor(command[1]).stop();
         }

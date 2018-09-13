@@ -1,5 +1,6 @@
 package com.matsemann.robot.controller;
 
+import com.matsemann.robot.controller.command.CommandCreator;
 import com.matsemann.robot.controller.command.CommandHandler;
 import com.matsemann.robot.controller.command.DefaultKeybindings;
 import com.matsemann.robot.controller.ui.mainview.LegoViewController;

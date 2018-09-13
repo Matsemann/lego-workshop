@@ -13,61 +13,62 @@ import java.util.stream.Collectors;
 public class CommandHandler {
 
 
-    private Map<String, List<ControlCommand>> keyBindings = new LinkedHashMap<>();
+    private Map<String, KeyEventCommands> keyEventCommands = new LinkedHashMap<>();
+
     private List<EventHandler<CommandEvent>> listeners = new ArrayList<>();
 
     public String getCommandStringForButtonPress(String keypress, boolean keyUp) {
-
-        String key = makeKey(keypress, keyUp);
-        if (!keyBindings.containsKey(key)) {
+        if (!keyEventCommands.containsKey(keypress)) {
             return null;
         }
 
-        List<ControlCommand> controlCommands = keyBindings.get(key);
+        KeyEventCommands keyCommands = keyEventCommands.get(keypress);
 
-        String command = controlCommands.stream()
+        return (keyUp ? keyCommands.upCommands : keyCommands.downCommands).stream()
+                .filter(command -> !(command instanceof EmptyCommand))
                 .map(ControlCommand::getRobotCommand)
                 .collect(Collectors.joining("|"));
-
-        return command;
     }
 
     public void addCommandToButton(String keypress, boolean keyUp, ControlCommand command) {
-        String key = makeKey(keypress, keyUp);
-        addCommandToButton(key, command, -1);
+        addCommandToButton(keypress, keyUp, command, -1);
     }
 
-    public void addCommandToButton(String key, ControlCommand command, int index) {
-        if (!keyBindings.containsKey(key)) {
-            keyBindings.put(key, new ArrayList<>());
+    public void addCommandToButton(String keypress, boolean keyUp, ControlCommand command, int index) {
+        if (!keyEventCommands.containsKey(keypress)) {
+            keyEventCommands.put(keypress, new KeyEventCommands(keypress));
         }
+        KeyEventCommands commands = this.keyEventCommands.get(keypress);
+        List<ControlCommand> list = keyUp ? commands.upCommands : commands.downCommands;
         if (index == -1) {
-            keyBindings.get(key).add(command);
+            list.add(command);
         } else {
-            keyBindings.get(key).add(index, command);
+            list.add(index, command);
         }
         fire();
     }
 
-    public void removeCommandFromButton(String key, int index) {
-        if (!keyBindings.containsKey(key)) {
+    public void removeCommandFromButton(String keypress, boolean keyUp, int index) {
+        if (!keyEventCommands.containsKey(keypress)) {
             return;
         }
-        keyBindings.get(key).remove(index);
-        if (keyBindings.get(key).size() == 0) {
-            keyBindings.remove(key);
+
+        KeyEventCommands commands = keyEventCommands.get(keypress);
+
+        (keyUp ? commands.upCommands : commands.downCommands).remove(index);
+
+        if (commands.upCommands.size() == 0 && commands.downCommands.size() == 0) {
+            keyEventCommands.remove(keypress);
         }
+
         fire();
     }
 
     public void removeAll() {
-        keyBindings.clear();
+        keyEventCommands.clear();
         fire();
     }
 
-    public Map<String, List<ControlCommand>> getKeyBindings() {
-        return keyBindings;
-    }
 
     public void addListener(EventHandler<CommandEvent> handler) {
         listeners.add(handler);
@@ -77,10 +78,9 @@ public class CommandHandler {
         listeners.forEach(h -> h.handle(new CommandEvent()));
     }
 
-    private String makeKey(String keypress, boolean keyUp) {
-        return keypress + (keyUp ? "up" : "down");
+    public Map<String, KeyEventCommands> getKeyEventCommands() {
+        return keyEventCommands;
     }
-
 
     public static class CommandEvent extends Event {
         public static final EventType<CommandEvent> CHANGED = new EventType<>(Event.ANY, "CHANGED");
@@ -89,6 +89,16 @@ public class CommandHandler {
             super(CHANGED);
         }
 
+    }
+
+    public static class KeyEventCommands {
+        public String key;
+        public List<ControlCommand> downCommands = new ArrayList<>();
+        public List<ControlCommand> upCommands = new ArrayList<>();
+
+        public KeyEventCommands(String key) {
+            this.key = key;
+        }
     }
 
 }

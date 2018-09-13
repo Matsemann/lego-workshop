@@ -7,28 +7,26 @@ import static java.util.stream.Collectors.toList;
 
 public class CommandCreator {
 
-    public final static List<Class<? extends ControlCommand>> COMMANDS = asList(
+    public static final List<Class<? extends ControlCommand>> COMMANDS = asList(
             EmptyCommand.class,
             MoveControlCommand.class,
             ResetControlCommand.class,
             StopControlCommand.class
     );
 
+    public static final List<String> NAMES = COMMANDS.stream()
+            .map(CommandCreator::create)
+            .map(ControlCommand::getName)
+            .collect(toList());
 
-    public List<ControlCommand> getAvailableCommands() {
+    public static ControlCommand create(String name) {
         return COMMANDS.stream()
-                .map(this::create)
-                .collect(toList());
-    }
-
-    public ControlCommand create(String name) {
-        return COMMANDS.stream()
-                .map(this::create)
+                .map(CommandCreator::create)
                 .filter(e -> name.equals(e.getName()))
                 .findFirst().get();
     }
 
-    private ControlCommand create(Class<? extends ControlCommand> clazz) {
+    private static ControlCommand create(Class<? extends ControlCommand> clazz) {
         try {
             return clazz.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
