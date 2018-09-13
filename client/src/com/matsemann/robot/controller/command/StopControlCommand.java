@@ -35,6 +35,11 @@ public class StopControlCommand implements ControlCommand {
     }
 
     @Override
+    public String getOption(String name) {
+        return motor;
+    }
+
+    @Override
     public String getRobotCommand() {
         return getName() + ":" + motor;
     }

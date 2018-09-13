@@ -10,12 +10,14 @@ public interface ControlCommand {
 
     void setOption(String name, String value);
 
+    String getOption(String name);
+
     String getRobotCommand();
 
 
     class Option {
-        String name;
-        List<String> values;
+        public String name;
+        public List<String> values;
 
         public Option() {
 

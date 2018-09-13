@@ -4,11 +4,11 @@ import java.util.List;
 
 import static java.util.Collections.emptyList;
 
-public class ResetControlCommand implements ControlCommand {
+public class EmptyCommand implements ControlCommand {
 
     @Override
     public String getName() {
-        return "reset";
+        return "nothing";
     }
 
     @Override
@@ -27,6 +27,6 @@ public class ResetControlCommand implements ControlCommand {
 
     @Override
     public String getRobotCommand() {
-        return getName();
+        return "";
     }
 }

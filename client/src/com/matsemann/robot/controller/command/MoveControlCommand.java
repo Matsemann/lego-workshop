@@ -41,6 +41,15 @@ public class MoveControlCommand implements ControlCommand {
     }
 
     @Override
+    public String getOption(String name) {
+        if (name.equals("motor")) {
+            return motor;
+        } else {
+            return angle;
+        }
+    }
+
+    @Override
     public String getRobotCommand() {
         return getName() + ":" + motor + ":" + angle;
     }
