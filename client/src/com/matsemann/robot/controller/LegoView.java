@@ -1,6 +1,5 @@
 package com.matsemann.robot.controller;
 
-import com.matsemann.robot.controller.command.CommandCreator;
 import com.matsemann.robot.controller.command.CommandHandler;
 import com.matsemann.robot.controller.command.DefaultKeybindings;
 import com.matsemann.robot.controller.ui.mainview.LegoViewController;
@@ -22,6 +21,8 @@ public class LegoView extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/mainview/MainView.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(LegoView.class.getResource("/com/matsemann/robot/controller/ui/mainview/legostyle.css").toExternalForm());
+
         primaryStage.setTitle("Matsemann's LEGO Controller");
         primaryStage.setScene(scene);
         primaryStage.show();
