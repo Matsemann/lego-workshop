@@ -77,7 +77,7 @@ public class LegoViewController implements EventHandler<CommandEvent> {
     public VBox createCommandsView(KeyEventCommands commands, boolean keyUp, String additionalClass) {
         VBox vBox = new VBox();
         vBox.getStyleClass().addAll("row",additionalClass);
-        vBox.setSpacing(10);
+        vBox.setSpacing(0);
         vBox.setPadding(new Insets(10, 30, 10, 0));
 
         int i = 0;
@@ -86,7 +86,7 @@ public class LegoViewController implements EventHandler<CommandEvent> {
             vBox.getChildren().add(singleCommandView);
         }
 
-        Button plus = new Button("Legg til");
+        Button plus = new Button("➕");
         plus.setOnAction(event -> {
             commandHandler.addCommandToButton(commands.key, keyUp, new EmptyCommand());
         });
@@ -95,10 +95,10 @@ public class LegoViewController implements EventHandler<CommandEvent> {
 
         Region region = new Region();
         HBox.setHgrow(region, Priority.ALWAYS);
-        HBox fjernBox = new HBox(region, plus);
-        fjernBox.setPadding(new Insets(0, 10, 0, 10));
+        HBox leggTilBoks = new HBox(region, plus);
+        leggTilBoks.setPadding(new Insets(0, 10, 0, 10));
 
-        vBox.getChildren().add(fjernBox);
+        vBox.getChildren().add(leggTilBoks);
 
         return vBox;
     }
@@ -136,7 +136,7 @@ public class LegoViewController implements EventHandler<CommandEvent> {
         Region region = new Region();
         HBox.setHgrow(region, Priority.ALWAYS);
 
-        Button fjern = new Button("Fjern");
+        Button fjern = new Button("X");
         fjern.setOnAction(event -> {
             commandHandler.removeCommandFromButton(key, keyUp, index);
         });

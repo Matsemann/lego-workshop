@@ -4,21 +4,36 @@
 }
 
 .button.remove {
-    -fx-background-color: #ff8967;
-    -fx-pref-width: 70px;
+    /*-fx-background-color: #ff8967;*/
+    -fx-background-insets: 0px;
+    -fx-background-radius: 20px;
+    /*-fx-border-color: #ffae98 #964e41 #964e41 #ffae98;*/
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 30px;
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-radius: 20px;
 }
 
 .button.remove:hover {
-    -fx-background-color: #e17265;
+    -fx-background-color: rgba(0, 0, 0, 0.4);
 }
 
 .button.add {
-    -fx-background-color: #8cff94;
-    -fx-pref-width: 70px;
+    -fx-background-color: #67ce6c;
+    -fx-pref-width: 30px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    /*-fx-font-size: 130%;*/
+    -fx-background-insets: 0px;
+    -fx-border-radius: 0;
+    -fx-border-color: #67ce6c #4f9d4f #4f9d4f #4f9d4f;
 }
 
 .button.add:hover {
-    -fx-background-color: #67ce6c;
+    -fx-background-color: #4f9d4f;
+    -fx-border-color: #4f9d4f #4f9d4f #4f9d4f #4f9d4f;
 }
 
 #mainGrid .row.even {
@@ -55,18 +70,15 @@
     -fx-background-color: transparent;
 }
 
-.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover
-{
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover {
     -fx-background-color: #dcdcdc;
     -fx-text-fill: #292929;
 }
 
-.combo-box-popup .list-view .list-cell:filled:hover
-{
+.combo-box-popup .list-view .list-cell:filled:hover {
     -fx-background-color: white;
     -fx-text-fill: #292929;
 }
-
 
 /* Per command */
 
@@ -81,40 +93,52 @@
 
 .reset {
     -fx-background-color: #ffa381;
+    -fx-border-color: #ffc8ad #c97665 #c97665 #ffc8ad;
 }
+
 .reset .combo-box {
     -fx-border-color: #c97665 #ffc8ad #ffc8ad #c97665;
 }
+
 .reset .combo-box-popup .list-cell {
     -fx-background-color: #c97665;
 }
 
 .move {
     -fx-background-color: #4a6cd4;
+    -fx-border-color: #4c7ee8 #485fbd #485fbd #4c7ee8;
 }
+
 .move .combo-box {
     -fx-border-color: #485fbd #4c7ee8 #4c7ee8 #485fbd;
 }
+
 .move .combo-box-popup .list-cell {
     -fx-background-color: #485fbd;
 }
 
 .stop {
     -fx-background-color: #bb42c3;
+    -fx-border-color: #d144d9 #a23faa #a23faa #d144d9;
 }
+
 .stop .combo-box {
     -fx-border-color: #a23faa #d144d9 #d144d9 #a23faa;
 }
+
 .stop .combo-box-popup .list-cell {
     -fx-background-color: #a23faa;
 }
 
 .nothing {
     -fx-background-color: #9bc3bb;
+    -fx-border-color: #afd7cf #688d85 #688d85 #afd7cf;
 }
+
 .nothing .combo-box {
     -fx-border-color: #688d85 #afd7cf #afd7cf #688d85;
 }
+
 .nothing .combo-box-popup .list-cell {
     -fx-background-color: #688d85;
 }
