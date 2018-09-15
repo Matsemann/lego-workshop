@@ -6,8 +6,12 @@ import com.matsemann.robot.controller.command.CommandHandler.KeyEventCommands;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polyline;
 
 import java.util.Map;
 
@@ -61,8 +65,8 @@ public class LegoViewController implements EventHandler<CommandEvent> {
         for (KeyEventCommands commands : keyEventCommands.values()) {
             String additionalClass = i % 2 == 0 ? "even" : "odd";
 
-            VBox downPane = createCommandsView(commands, false, additionalClass);
-            VBox upPane = createCommandsView(commands, true, additionalClass);
+            Node downPane = createCommandsView(commands, false, additionalClass);
+            Node upPane = createCommandsView(commands, true, additionalClass);
 
 
             Pane namePane = new Pane(new Label(commands.key));
@@ -74,16 +78,18 @@ public class LegoViewController implements EventHandler<CommandEvent> {
         }
     }
 
-    public VBox createCommandsView(KeyEventCommands commands, boolean keyUp, String additionalClass) {
+    private Node createCommandsView(KeyEventCommands commands, boolean keyUp, String additionalClass) {
         VBox vBox = new VBox();
         vBox.getStyleClass().addAll("row",additionalClass);
         vBox.setSpacing(0);
         vBox.setPadding(new Insets(10, 30, 10, 0));
 
         int i = 0;
+        Node notch = createNotch("default");
         for (ControlCommand command : (keyUp ? commands.upCommands : commands.downCommands)) {
-            HBox singleCommandView = createSingleCommandView(command, commands.key, keyUp, i++);
+            Node singleCommandView = createSingleCommandView(command, commands.key, keyUp, i++, notch);
             vBox.getChildren().add(singleCommandView);
+            notch = createNotch(command.getName());
         }
 
         Button plus = new Button("➕");
@@ -103,12 +109,17 @@ public class LegoViewController implements EventHandler<CommandEvent> {
         return vBox;
     }
 
-    public HBox createSingleCommandView(ControlCommand command, String key, boolean keyUp, int index) {
+    private Node createSingleCommandView(ControlCommand command, String key, boolean keyUp, int index, Node notch) {
 
-        HBox pane = new HBox();
-        pane.getStyleClass().addAll("command",command.getName());
-        pane.setPadding(new Insets(0, 10, 0, 10));
-        pane.setSpacing(20);
+        StackPane stackPane = new StackPane();
+        stackPane.getStyleClass().add("stack");
+        stackPane.setAlignment(Pos.TOP_LEFT);
+
+        HBox commandPane = new HBox();
+
+        commandPane.getStyleClass().addAll("command",command.getName());
+        commandPane.setPadding(new Insets(0, 10, 0, 10));
+        commandPane.setSpacing(20);
 
         ComboBox<String> combo = new ComboBox<>();
         combo.getItems().addAll(CommandCreator.NAMES);
@@ -119,7 +130,7 @@ public class LegoViewController implements EventHandler<CommandEvent> {
             commandHandler.addCommandToButton(key, keyUp, CommandCreator.create(combo.getSelectionModel().getSelectedItem()), index);
         });
 
-        pane.getChildren().add(combo);
+        commandPane.getChildren().add(combo);
 
         command.getOptions().forEach(option -> {
             ComboBox<String> optionBox = new ComboBox<>();
@@ -130,7 +141,7 @@ public class LegoViewController implements EventHandler<CommandEvent> {
                 command.setOption(option.name, optionBox.getSelectionModel().getSelectedItem());
             });
 
-            pane.getChildren().addAll(new Label(option.name), optionBox);
+            commandPane.getChildren().addAll(myLabel(option.name), optionBox);
         });
 
         Region region = new Region();
@@ -141,12 +152,25 @@ public class LegoViewController implements EventHandler<CommandEvent> {
             commandHandler.removeCommandFromButton(key, keyUp, index);
         });
         fjern.getStyleClass().add("remove");
-        pane.getChildren().addAll(region, fjern);
+        commandPane.getChildren().addAll(region, fjern);
 
-        return pane;
+        stackPane.getChildren().addAll(commandPane, notch);
+        return stackPane;
+    }
+
+    private Node createNotch(String command) {
+        Polyline polyline = new Polyline(0, 0, 8, 5, 30, 5, 38, 0);
+        polyline.getStyleClass().addAll("notch", command);
+
+        return polyline;
     }
 
     public void reset(ActionEvent actionEvent) {
         new DefaultKeybindings(commandHandler).resetKeybindings();
+    }
+
+    private Label myLabel(String text) {
+        Label label = new Label(text);
+        return label;
     }
 }
