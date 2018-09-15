@@ -10,10 +10,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polyline;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+
+import static java.util.Arrays.asList;
 
 public class LegoViewController implements EventHandler<CommandEvent> {
 
@@ -85,7 +88,7 @@ public class LegoViewController implements EventHandler<CommandEvent> {
         vBox.setPadding(new Insets(10, 30, 10, 0));
 
         int i = 0;
-        Node notch = createNotch("default");
+        List<Node> notch = createNotch("default");
         for (ControlCommand command : (keyUp ? commands.upCommands : commands.downCommands)) {
             Node singleCommandView = createSingleCommandView(command, commands.key, keyUp, i++, notch);
             vBox.getChildren().add(singleCommandView);
@@ -109,17 +112,19 @@ public class LegoViewController implements EventHandler<CommandEvent> {
         return vBox;
     }
 
-    private Node createSingleCommandView(ControlCommand command, String key, boolean keyUp, int index, Node notch) {
+    private Node createSingleCommandView(ControlCommand command, String key, boolean keyUp, int index, List<Node> notch) {
 
         StackPane stackPane = new StackPane();
-        stackPane.getStyleClass().add("stack");
+        stackPane.getStyleClass().addAll("stack", command.getName());
         stackPane.setAlignment(Pos.TOP_LEFT);
 
         HBox commandPane = new HBox();
+//        commandPane.setMaxWidth(520);
 
         commandPane.getStyleClass().addAll("command",command.getName());
         commandPane.setPadding(new Insets(0, 10, 0, 10));
-        commandPane.setSpacing(20);
+//        commandPane.setSpacing(5);
+
 
         ComboBox<String> combo = new ComboBox<>();
         combo.getItems().addAll(CommandCreator.NAMES);
@@ -141,7 +146,7 @@ public class LegoViewController implements EventHandler<CommandEvent> {
                 command.setOption(option.name, optionBox.getSelectionModel().getSelectedItem());
             });
 
-            commandPane.getChildren().addAll(myLabel(option.name), optionBox);
+            commandPane.getChildren().addAll(new Label(option.name), optionBox);
         });
 
         Region region = new Region();
@@ -154,23 +159,27 @@ public class LegoViewController implements EventHandler<CommandEvent> {
         fjern.getStyleClass().add("remove");
         commandPane.getChildren().addAll(region, fjern);
 
-        stackPane.getChildren().addAll(commandPane, notch);
+        stackPane.getChildren().addAll(commandPane);
+        stackPane.getChildren().addAll(notch);
         return stackPane;
     }
 
-    private Node createNotch(String command) {
-        Polyline polyline = new Polyline(0, 0, 8, 5, 30, 5, 38, 0);
-        polyline.getStyleClass().addAll("notch", command);
+    private List<Node> createNotch(String command) {
 
-        return polyline;
+        Polyline overNotch = new Polyline(0, 0, 8, 5, 30, 5, 38, 0);
+        overNotch.getStyleClass().addAll("notch", command);
+
+        Polyline overNotchDarkline = new Polyline(0, 0, 38, 0);
+        overNotchDarkline.getStyleClass().addAll("notchfill", command);
+
+        Polyline higlight = new Polyline(0, 0, 8, 5, 30, 5, 38, 0);
+        higlight.getStyleClass().addAll("notch-border");
+
+        return asList(overNotchDarkline, overNotch, higlight);
     }
 
     public void reset(ActionEvent actionEvent) {
         new DefaultKeybindings(commandHandler).resetKeybindings();
     }
 
-    private Label myLabel(String text) {
-        Label label = new Label(text);
-        return label;
-    }
 }

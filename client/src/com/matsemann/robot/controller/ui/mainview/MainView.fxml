@@ -12,8 +12,8 @@
                             <GridPane fx:id="mainGrid">
                                 <columnConstraints>
                                     <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
-                                    <ColumnConstraints hgrow="ALWAYS" minWidth="350.0" prefWidth="350.0" />
-                                    <ColumnConstraints hgrow="ALWAYS" minWidth="350.0" prefWidth="350.0" />
+                                    <ColumnConstraints hgrow="ALWAYS" minWidth="520" prefWidth="520" />
+                                    <ColumnConstraints hgrow="ALWAYS" minWidth="520" prefWidth="520" />
                                 </columnConstraints>
                                 <rowConstraints>
                                     <RowConstraints />

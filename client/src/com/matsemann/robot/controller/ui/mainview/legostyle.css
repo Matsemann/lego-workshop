@@ -54,7 +54,7 @@
 }
 
 .combo-box:showing {
-    -fx-color: red;
+    -fx-color: white;
 }
 
 .combo-box .list-cell {
@@ -90,6 +90,20 @@
     -fx-stroke: #d3d300;
 }
 
+.stack .notch-border {
+    -fx-translate-y: -1px;
+    -fx-translate-x: 30px;
+    -fx-fill: transparent;
+    -fx-stroke: #d3d300;
+}
+
+.stack .notchfill {
+    -fx-translate-y: -2px;
+    -fx-translate-x: 30px;
+    -fx-fill: transparent;
+    /*-fx-stroke: #d3d300;*/
+}
+
 .command {
     -fx-pref-height: 40px;
     -fx-alignment: center-left;
@@ -97,9 +111,10 @@
 
 .command .label {
     -fx-text-fill: white;
+    -fx-label-padding: 0 10 0 20;
 }
 
-.reset {
+.command.reset {
     -fx-background-color: #ffa381;
     -fx-border-color: #ffc8ad #c97665 #c97665 #ffc8ad;
 }
@@ -115,15 +130,20 @@
     -fx-fill: #ffa381;
     -fx-stroke: #c97665;
 }
+.stack .notchfill.reset {
+    -fx-stroke: #ffa381;
+}
+.stack.reset .notch-border {
+    -fx-stroke: #ffc8ad;
+}
 
-.move {
+.command.move {
     -fx-background-color: #4a6cd4;
     -fx-border-color: #4c7ee8 #485fbd #485fbd #4c7ee8;
 }
 .move .combo-box {
     -fx-border-color: #485fbd #4c7ee8 #4c7ee8 #485fbd;
 }
-
 .move .combo-box-popup .list-cell {
     -fx-background-color: #485fbd;
 }
@@ -131,8 +151,14 @@
     -fx-fill: #4a6cd4;
     -fx-stroke: #485fbd;
 }
+.stack .notchfill.move {
+    -fx-stroke: #4a6cd4;
+}
+.stack.move .notch-border {
+    -fx-stroke: #4c7ee8;
+}
 
-.stop {
+.command.stop {
     -fx-background-color: #bb42c3;
     -fx-border-color: #d144d9 #a23faa #a23faa #d144d9;
 }
@@ -148,8 +174,14 @@
     -fx-fill: #bb42c3;
     -fx-stroke: #a23faa;
 }
+.stack .notchfill.stop {
+    -fx-stroke: #bb42c3;
+}
+.stack.stop .notch-border {
+    -fx-stroke: #d144d9;
+}
 
-.nothing {
+.command.nothing {
     -fx-background-color: #9bc3bb;
     -fx-border-color: #afd7cf #688d85 #688d85 #afd7cf;
 }
@@ -164,4 +196,10 @@
 .stack .notch.nothing {
     -fx-fill: #9bc3bb;
     -fx-stroke: #688d85;
+}
+.stack .notchfill.nothing {
+    -fx-stroke: #9bc3bb;
+}
+.stack.nothing .notch-border {
+    -fx-stroke: #afd7cf;
 }
