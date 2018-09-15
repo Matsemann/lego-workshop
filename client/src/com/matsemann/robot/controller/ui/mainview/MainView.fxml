@@ -8,7 +8,7 @@
             <center>
                 <SplitPane fx:id="mainSplitPane" dividerPositions="0.5" orientation="VERTICAL" BorderPane.alignment="CENTER">
                     <items>
-                        <ScrollPane fitToWidth="true">
+                        <ScrollPane fitToWidth="true" fx:id="scrollPane">
                             <GridPane fx:id="mainGrid">
                                 <columnConstraints>
                                     <ColumnConstraints hgrow="NEVER" minWidth="100.0" />

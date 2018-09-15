@@ -3,6 +3,9 @@ package com.matsemann.robot.controller.ui.mainview;
 import com.matsemann.robot.controller.command.*;
 import com.matsemann.robot.controller.command.CommandHandler.CommandEvent;
 import com.matsemann.robot.controller.command.CommandHandler.KeyEventCommands;
+import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -27,6 +30,7 @@ public class LegoViewController implements EventHandler<CommandEvent> {
     public Pane leftConsole;
     public Pane rightConsole;
     public GridPane mainGrid;
+    public ScrollPane scrollPane;
 
     private boolean hidden = true;
     private CommandHandler commandHandler;
@@ -58,6 +62,8 @@ public class LegoViewController implements EventHandler<CommandEvent> {
         System.out.println("changes detected, redrawing");
         Map<String, KeyEventCommands> keyEventCommands = commandHandler.getKeyEventCommands();
 
+        double scrollPos = scrollPane.getVvalue();
+
         mainGrid.getChildren().clear();
 
         mainGrid.add(new Label("Knapp"), 0, 0);
@@ -79,6 +85,10 @@ public class LegoViewController implements EventHandler<CommandEvent> {
             mainGrid.add(upPane, 2, i);
             i++;
         }
+
+        Platform.runLater(() -> {
+            scrollPane.setVvalue(scrollPos);
+        });
     }
 
     private Node createCommandsView(KeyEventCommands commands, boolean keyUp, String additionalClass) {
