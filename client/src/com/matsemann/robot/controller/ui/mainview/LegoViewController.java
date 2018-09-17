@@ -4,22 +4,14 @@ import com.matsemann.robot.controller.command.*;
 import com.matsemann.robot.controller.command.CommandHandler.CommandEvent;
 import com.matsemann.robot.controller.command.CommandHandler.KeyEventCommands;
 import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Polyline;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
-
-import static java.util.Arrays.asList;
 
 public class LegoViewController implements EventHandler<CommandEvent> {
 
@@ -98,11 +90,11 @@ public class LegoViewController implements EventHandler<CommandEvent> {
         vBox.setPadding(new Insets(10, 30, 10, 0));
 
         int i = 0;
-        List<Node> notch = createNotch("default");
+        Notch notch = new Notch("default");
         for (ControlCommand command : (keyUp ? commands.upCommands : commands.downCommands)) {
             Node singleCommandView = createSingleCommandView(command, commands.key, keyUp, i++, notch);
             vBox.getChildren().add(singleCommandView);
-            notch = createNotch(command.getName());
+            notch = new Notch(command.getName());
         }
 
         Button plus = new Button("➕");
@@ -122,70 +114,13 @@ public class LegoViewController implements EventHandler<CommandEvent> {
         return vBox;
     }
 
-    private Node createSingleCommandView(ControlCommand command, String key, boolean keyUp, int index, List<Node> notch) {
-
-        StackPane stackPane = new StackPane();
-        stackPane.getStyleClass().addAll("stack", command.getName());
-        stackPane.setAlignment(Pos.TOP_LEFT);
-
-        HBox commandPane = new HBox();
-//        commandPane.setMaxWidth(520);
-
-        commandPane.getStyleClass().addAll("command",command.getName());
-        commandPane.setPadding(new Insets(0, 10, 0, 10));
-//        commandPane.setSpacing(5);
-
-
-        ComboBox<String> combo = new ComboBox<>();
-        combo.getItems().addAll(CommandCreator.NAMES);
-        combo.getSelectionModel().select(command.getName());
-
-        combo.setOnAction(event -> {
+    private Node createSingleCommandView(ControlCommand command, String key, boolean keyUp, int index, Notch notch) {
+        return new CommandPanel(command, notch, (commandName) -> {
             commandHandler.removeCommandFromButton(key, keyUp, index);
-            commandHandler.addCommandToButton(key, keyUp, CommandCreator.create(combo.getSelectionModel().getSelectedItem()), index);
-        });
-
-        commandPane.getChildren().add(combo);
-
-        command.getOptions().forEach(option -> {
-            ComboBox<String> optionBox = new ComboBox<>();
-            optionBox.getItems().addAll(option.values);
-            optionBox.getSelectionModel().select(command.getOption(option.name));
-
-            optionBox.setOnAction(event -> {
-                command.setOption(option.name, optionBox.getSelectionModel().getSelectedItem());
-            });
-
-            commandPane.getChildren().addAll(new Label(option.name), optionBox);
-        });
-
-        Region region = new Region();
-        HBox.setHgrow(region, Priority.ALWAYS);
-
-        Button fjern = new Button("X");
-        fjern.setOnAction(event -> {
+            commandHandler.addCommandToButton(key, keyUp, CommandCreator.create(commandName), index);
+        }, () -> {
             commandHandler.removeCommandFromButton(key, keyUp, index);
         });
-        fjern.getStyleClass().add("remove");
-        commandPane.getChildren().addAll(region, fjern);
-
-        stackPane.getChildren().addAll(commandPane);
-        stackPane.getChildren().addAll(notch);
-        return stackPane;
-    }
-
-    private List<Node> createNotch(String command) {
-
-        Polyline overNotch = new Polyline(0, 0, 8, 5, 30, 5, 38, 0);
-        overNotch.getStyleClass().addAll("notch", command);
-
-        Polyline overNotchDarkline = new Polyline(0, 0, 38, 0);
-        overNotchDarkline.getStyleClass().addAll("notchfill", command);
-
-        Polyline higlight = new Polyline(0, 0, 8, 5, 30, 5, 38, 0);
-        higlight.getStyleClass().addAll("notch-border");
-
-        return asList(overNotchDarkline, overNotch, higlight);
     }
 
     public void reset(ActionEvent actionEvent) {
