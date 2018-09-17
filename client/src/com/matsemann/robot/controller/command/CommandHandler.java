@@ -38,6 +38,10 @@ public class CommandHandler {
         if (!keyEventCommands.containsKey(keypress)) {
             keyEventCommands.put(keypress, new KeyEventCommands(keypress));
         }
+        if (command == null) {
+            return;
+        }
+
         KeyEventCommands commands = this.keyEventCommands.get(keypress);
         List<ControlCommand> list = keyUp ? commands.upCommands : commands.downCommands;
         if (index == -1) {
@@ -57,9 +61,9 @@ public class CommandHandler {
 
         (keyUp ? commands.upCommands : commands.downCommands).remove(index);
 
-        if (commands.upCommands.size() == 0 && commands.downCommands.size() == 0) {
-            keyEventCommands.remove(keypress);
-        }
+//        if (commands.upCommands.size() == 0 && commands.downCommands.size() == 0) {
+//            keyEventCommands.remove(keypress);
+//        }
 
         fire();
     }
