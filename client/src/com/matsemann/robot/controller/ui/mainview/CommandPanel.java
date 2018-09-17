@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -54,6 +55,7 @@ public class CommandPanel extends StackPane {
         HBox.setHgrow(region, Priority.ALWAYS);
 
         Button fjern = new Button("X");
+        fjern.setTooltip(new Tooltip("Fjern kommando"));
         fjern.setOnAction(event -> {
             removeFn.run();
         });

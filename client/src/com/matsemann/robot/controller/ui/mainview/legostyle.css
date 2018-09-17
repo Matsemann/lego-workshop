@@ -3,21 +3,26 @@
     -fx-faint-focus-color: transparent;
 }
 
+.button:hover {
+    -fx-cursor: hand;
+}
+
 .button.remove {
     /*-fx-background-color: #ff8967;*/
     -fx-background-insets: 0px;
     -fx-background-radius: 20px;
     /*-fx-border-color: #ffae98 #964e41 #964e41 #ffae98;*/
-    -fx-text-fill: white;
+    -fx-text-fill: #e2e2e2;
     -fx-font-weight: bold;
     -fx-pref-width: 30px;
     -fx-background-color: transparent;
-    -fx-border-color: white;
+    -fx-border-color: transparent;
     -fx-border-radius: 20px;
 }
 
 .button.remove:hover {
     -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-text-fill: white;
 }
 
 .button.add {
@@ -40,7 +45,7 @@
 .combo-box {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
-    /*-fx-pref-width: 100px;*/
+    -fx-cursor: hand;
 }
 
 .combo-box:showing {
@@ -74,14 +79,14 @@
 /* Per command */
 
 .stack .notch {
-    -fx-translate-y: -2px;
+    -fx-translate-y: -1.5px;
     -fx-translate-x: 30px;
     -fx-fill: yellow;
     -fx-stroke: #d3d300;
 }
 
 .stack .notch-border {
-    -fx-translate-y: -1px;
+    -fx-translate-y: -.5px;
     -fx-translate-x: 30px;
     -fx-fill: transparent;
     -fx-stroke: #d3d300;
@@ -109,11 +114,9 @@
     -fx-background-color: #ffa381;
     -fx-border-color: #ffc8ad #c97665 #c97665 #ffc8ad;
 }
-
 .reset .combo-box {
     -fx-border-color: #c97665 #ffc8ad #ffc8ad #c97665;
 }
-
 .reset .combo-box-popup .list-cell {
     -fx-background-color: #c97665;
 }
@@ -130,67 +133,67 @@
 
 .command.move {
     -fx-background-color: #4a6cd4;
-    -fx-border-color: #4c7ee8 #485fbd #485fbd #4c7ee8;
+    -fx-border-color: #508ffe #404a93 #404a93 #508ffe;
 }
 .move .combo-box {
-    -fx-border-color: #485fbd #4c7ee8 #4c7ee8 #485fbd;
+    -fx-border-color: #404a93 #508ffe #508ffe #404a93;
 }
 .move .combo-box-popup .list-cell {
-    -fx-background-color: #485fbd;
+    -fx-background-color: #404a93;
 }
 .stack .notch.move {
     -fx-fill: #4a6cd4;
-    -fx-stroke: #485fbd;
+    -fx-stroke: #404a93;
 }
 .stack .notchfill.move {
     -fx-stroke: #4a6cd4;
 }
 .stack.move .notch-border {
-    -fx-stroke: #4c7ee8;
+    -fx-stroke: #508ffe;
 }
 
 .command.stop {
     -fx-background-color: #bb42c3;
-    -fx-border-color: #d144d9 #a23faa #a23faa #d144d9;
+    -fx-border-color: #ee46f6 #894091 #894091 #ee46f6;
 }
 
 .stop .combo-box {
-    -fx-border-color: #a23faa #d144d9 #d144d9 #a23faa;
+    -fx-border-color: #894091 #ee46f6 #ee46f6 #894091;
 }
 
 .stop .combo-box-popup .list-cell {
-    -fx-background-color: #a23faa;
+    -fx-background-color: #894091;
 }
 .stack .notch.stop {
     -fx-fill: #bb42c3;
-    -fx-stroke: #a23faa;
+    -fx-stroke: #894091;
 }
 .stack .notchfill.stop {
     -fx-stroke: #bb42c3;
 }
 .stack.stop .notch-border {
-    -fx-stroke: #d144d9;
+    -fx-stroke: #ee46f6;
 }
 
 .command.nothing {
     -fx-background-color: #9bc3bb;
-    -fx-border-color: #afd7cf #688d85 #688d85 #afd7cf;
+    -fx-border-color: #c3ebe3 #577a72 #577a72 #c3ebe3;
 }
 
 .nothing .combo-box {
-    -fx-border-color: #688d85 #afd7cf #afd7cf #688d85;
+    -fx-border-color: #577a72 #c3ebe3 #c3ebe3 #577a72;
 }
 
 .nothing .combo-box-popup .list-cell {
-    -fx-background-color: #688d85;
+    -fx-background-color: #577a72;
 }
 .stack .notch.nothing {
     -fx-fill: #9bc3bb;
-    -fx-stroke: #688d85;
+    -fx-stroke: #577a72;
 }
 .stack .notchfill.nothing {
     -fx-stroke: #9bc3bb;
 }
 .stack.nothing .notch-border {
-    -fx-stroke: #afd7cf;
+    -fx-stroke: #c3ebe3;
 }

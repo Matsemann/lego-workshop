@@ -8,6 +8,7 @@ import com.matsemann.robot.controller.command.EmptyCommand;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -35,6 +36,7 @@ public class KeyBindPanel extends VBox {
             commandHandler.addCommandToButton(commands.key, keyUp, new EmptyCommand());
         });
         plus.getStyleClass().add("add");
+        plus.setTooltip(new Tooltip("Legg til kommando"));
 
 
         Region region = new Region();
