@@ -7,11 +7,6 @@ import com.matsemann.robot.controller.command.ControlCommand;
 import com.matsemann.robot.controller.command.EmptyCommand;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tooltip;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public class KeyBindPanel extends VBox {
@@ -31,20 +26,11 @@ public class KeyBindPanel extends VBox {
             notch = new Notch(command.getName());
         }
 
-        Button plus = new Button("➕");
-        plus.setOnAction(event -> {
+        AddCommandButton addCommandButton = new AddCommandButton(() -> {
             commandHandler.addCommandToButton(commands.key, keyUp, new EmptyCommand());
         });
-        plus.getStyleClass().add("add");
-        plus.setTooltip(new Tooltip("Legg til kommando"));
 
-
-        Region region = new Region();
-        HBox.setHgrow(region, Priority.ALWAYS);
-        HBox leggTilBoks = new HBox(region, plus);
-        leggTilBoks.setPadding(new Insets(0, 10, 0, 10));
-
-        getChildren().add(leggTilBoks);
+        getChildren().add(addCommandButton);
 
     }
 

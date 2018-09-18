@@ -80,10 +80,10 @@ public class LegoViewController implements EventHandler<CommandEvent> {
         new Thread(() -> {
             try {
                 Thread.sleep(20);
+                scrollPane.setVvalue(scrollPos);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            scrollPane.setVvalue(scrollPos);
         }).start();
 
     }
