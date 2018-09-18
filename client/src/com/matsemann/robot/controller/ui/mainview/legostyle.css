@@ -7,6 +7,10 @@
     -fx-cursor: hand;
 }
 
+#mainGrid {
+    -fx-background-color: #eaeaea;
+}
+
 .button.remove {
     /*-fx-background-color: #ff8967;*/
     -fx-background-insets: 0px;
@@ -78,26 +82,54 @@
 
 /* Per command */
 
-.stack .notch {
+.keyname {
+
+}
+.keyname .label {
+    -fx-background-color: yellow;
+    -fx-pref-width: 50px;
+    -fx-translate-y: 7px;
+    -fx-translate-x: -50px;
+    -fx-alignment: center;
+    /*-fx-pref-height: 50px;*/
+}
+
+.keyname .topline {
+    -fx-translate-x: -50px;
+    -fx-translate-y: -2px;
+    -fx-fill: yellow;
+    -fx-stroke: yellow;
+}
+.keyname .bottomline {
+    -fx-translate-x: -50px;
+    -fx-fill: yellow;
+    -fx-stroke: yellow;
+}
+
+.notch {
     -fx-translate-y: -1.5px;
     -fx-translate-x: 30px;
     -fx-fill: yellow;
     -fx-stroke: #d3d300;
 }
-
-.stack .notch-border {
+.notch-border {
     -fx-translate-y: -.5px;
     -fx-translate-x: 30px;
     -fx-fill: transparent;
     -fx-stroke: #d3d300;
 }
-
-.stack .notchfill {
+.notchfill {
     -fx-translate-y: -2px;
     -fx-translate-x: 30px;
     -fx-fill: transparent;
     -fx-stroke-width: 2px;
-    -fx-stroke: #d3d300;
+    -fx-stroke: yellow;
+}
+.empty.notch {
+    -fx-fill: #eaeaea;
+}
+.empty.notchfill {
+    -fx-stroke: #eaeaea;
 }
 
 .command {
@@ -120,14 +152,14 @@
 .reset .combo-box-popup .list-cell {
     -fx-background-color: #c97665;
 }
-.stack .notch.reset {
+.notch.reset {
     -fx-fill: #ffa381;
     -fx-stroke: #c97665;
 }
-.stack .notchfill.reset {
+.notchfill.reset {
     -fx-stroke: #ffa381;
 }
-.stack.reset .notch-border {
+.reset .notch-border {
     -fx-stroke: #ffc8ad;
 }
 
@@ -141,14 +173,14 @@
 .move .combo-box-popup .list-cell {
     -fx-background-color: #404a93;
 }
-.stack .notch.move {
+.notch.move {
     -fx-fill: #4a6cd4;
     -fx-stroke: #404a93;
 }
-.stack .notchfill.move {
+.notchfill.move {
     -fx-stroke: #4a6cd4;
 }
-.stack.move .notch-border {
+.move .notch-border {
     -fx-stroke: #508ffe;
 }
 
@@ -164,14 +196,14 @@
 .stop .combo-box-popup .list-cell {
     -fx-background-color: #894091;
 }
-.stack .notch.stop {
+.notch.stop {
     -fx-fill: #bb42c3;
     -fx-stroke: #894091;
 }
-.stack .notchfill.stop {
+.notchfill.stop {
     -fx-stroke: #bb42c3;
 }
-.stack.stop .notch-border {
+.stop .notch-border {
     -fx-stroke: #ee46f6;
 }
 
@@ -187,13 +219,13 @@
 .nothing .combo-box-popup .list-cell {
     -fx-background-color: #577a72;
 }
-.stack .notch.nothing {
+.notch.nothing {
     -fx-fill: #9bc3bb;
     -fx-stroke: #577a72;
 }
-.stack .notchfill.nothing {
+.notchfill.nothing {
     -fx-stroke: #9bc3bb;
 }
-.stack.nothing .notch-border {
+.nothing .notch-border {
     -fx-stroke: #c3ebe3;
 }

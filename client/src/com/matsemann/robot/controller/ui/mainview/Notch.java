@@ -1,21 +1,16 @@
 package com.matsemann.robot.controller.ui.mainview;
 
-import javafx.scene.Node;
+import javafx.geometry.Pos;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Polyline;
 
-import java.util.List;
+public class Notch extends StackPane {
 
-import static java.util.Arrays.asList;
-
-public class Notch {
-
-    private String forCommand;
 
     public Notch(String forCommand) {
-        this.forCommand = forCommand;
-    }
+        setAlignment(Pos.TOP_LEFT);
+        setPickOnBounds(false);
 
-    List<Node> getElements() {
         Polyline overNotch = new Polyline(0, 0, 8, 5, 30, 5, 38, 0);
         overNotch.getStyleClass().addAll("notch", forCommand);
 
@@ -25,6 +20,6 @@ public class Notch {
         Polyline higlight = new Polyline(0, 0, 8, 5, 30, 5, 38, 0);
         higlight.getStyleClass().addAll("notch-border");
 
-        return asList(overNotchDarkline, overNotch, higlight);
+        getChildren().addAll(overNotchDarkline, overNotch, higlight);
     }
 }

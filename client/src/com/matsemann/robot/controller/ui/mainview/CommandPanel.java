@@ -63,6 +63,6 @@ public class CommandPanel extends StackPane {
         commandPane.getChildren().addAll(region, fjern);
 
         getChildren().addAll(commandPane);
-        getChildren().addAll(notch.getElements());
+        getChildren().addAll(notch);
     }
 }
