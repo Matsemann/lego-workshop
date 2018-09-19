@@ -85,13 +85,31 @@
 .keyname {
 
 }
-.keyname .label {
+.keyname .keylabel {
     -fx-background-color: #e1a91a;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
     -fx-pref-width: 49px;
     -fx-translate-y: 9px;
     -fx-translate-x: -49px;
     -fx-alignment: center;
+    -fx-label-padding: -15 0 0 0;
     -fx-border-color: transparent #9b6b1a transparent #ffc51b;
+}
+.keyname .keylabel.empty {
+    -fx-font-size: 14px;
+}
+.keyname .directionlabel {
+    -fx-pref-width: 49px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+    -fx-translate-x: -49px;
+    -fx-translate-y: 19px;
+}
+.keyname .directionlabel.empty {
+    -fx-translate-y: 14px;
 }
 
 .keyname .topline {
