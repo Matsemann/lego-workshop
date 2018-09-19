@@ -86,44 +86,68 @@
 
 }
 .keyname .label {
-    -fx-background-color: yellow;
-    -fx-pref-width: 50px;
-    -fx-translate-y: 7px;
-    -fx-translate-x: -50px;
+    -fx-background-color: #e1a91a;
+    -fx-pref-width: 49px;
+    -fx-translate-y: 9px;
+    -fx-translate-x: -49px;
     -fx-alignment: center;
-    /*-fx-pref-height: 50px;*/
+    -fx-border-color: transparent #9b6b1a transparent #ffc51b;
 }
 
 .keyname .topline {
     -fx-translate-x: -50px;
     -fx-translate-y: -2px;
-    -fx-fill: yellow;
-    -fx-stroke: yellow;
+    -fx-fill: #e1a91a;
+    -fx-stroke: #e1a91a;
+}
+.keyname .tophighlight {
+    -fx-translate-x: -49px;
+    -fx-translate-y: -2px;
+    -fx-fill: transparent;
+    -fx-stroke: #ffc51b;
+    -fx-stroke-width: 0.5px;
+}
+.keyname .topshadow {
+    -fx-translate-x: -49px;
+    -fx-translate-y: -2.5px;
+    -fx-fill: transparent;
+    -fx-stroke: #9b6b1a;
+    -fx-stroke-width: 0.5px;
 }
 .keyname .bottomline {
     -fx-translate-x: -50px;
-    -fx-fill: yellow;
-    -fx-stroke: yellow;
+    -fx-fill: #e1a91a;
+    -fx-stroke: #e1a91a;
+}
+.keyname .bottomhighlight {
+    -fx-translate-x: -49.5px;
+    -fx-fill: transparent;
+    -fx-stroke: #ffc51b;
+}
+.keyname .bottomshadow {
+    -fx-translate-x: -49.5px;
+    -fx-fill: transparent;
+    -fx-stroke: #9b6b1a;
 }
 
 .notch {
     -fx-translate-y: -1.5px;
     -fx-translate-x: 30px;
-    -fx-fill: yellow;
-    -fx-stroke: #d3d300;
+    -fx-fill: #e1a91a;
+    -fx-stroke: #e1a91a;
 }
 .notch-border {
     -fx-translate-y: -.5px;
     -fx-translate-x: 30px;
     -fx-fill: transparent;
-    -fx-stroke: #d3d300;
+    -fx-stroke: #e1a91a;
 }
 .notchfill {
     -fx-translate-y: -2px;
     -fx-translate-x: 30px;
     -fx-fill: transparent;
     -fx-stroke-width: 2px;
-    -fx-stroke: yellow;
+    -fx-stroke: #e1a91a;
 }
 .empty.notch {
     -fx-fill: #eaeaea;

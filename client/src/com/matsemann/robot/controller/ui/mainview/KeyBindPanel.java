@@ -45,11 +45,11 @@ public class KeyBindPanel extends StackPane {
 
         commandsPanel.getChildren().add(addCommandButton);
 
-        Label keyLabel = new Label(keyEventCommands.key);
 
         int rowheights = commands.size() > 0 ? commands.size() * 40 : 20;
 
-        keyLabel.setPrefHeight(rowheights + 6);
+        Label keyLabel = new Label(keyEventCommands.key);
+        keyLabel.setPrefHeight(rowheights + 2);
 
         StackPane keyName = new StackPane();
         keyName.setAlignment(Pos.TOP_LEFT);
@@ -58,14 +58,25 @@ public class KeyBindPanel extends StackPane {
 
         Polyline topLine = new Polyline(0, 0, 160, 0, 168, 10, 0, 10);
         topLine.getStyleClass().addAll("topline");
+        Polyline tophighlight = new Polyline(0, 10, 0, 0, 160, 0);
+        tophighlight.getStyleClass().addAll("tophighlight");
+        Polyline topshadow = new Polyline(160, 0, 168, 11, 117, 11, 109, 16, 87, 16, 79, 11, 0, 11);
+        topshadow.getStyleClass().addAll("topshadow");
 
         Polyline bottomLine = new Polyline(0, 0, 168, 0, 160, 10, 0, 10);
         bottomLine.getStyleClass().addAll("bottomline");
         bottomLine.setTranslateY(rowheights + 10);
+        Polyline bottomhighlight = new Polyline(0, 10, 0, 0, 168, 0);
+        bottomhighlight.getStyleClass().addAll("bottomhighlight");
+        bottomhighlight.setTranslateY(rowheights + 9.5);
+        Polyline bottomshadow = new Polyline(0, 10, 160, 10, 168, 0);
+        bottomshadow.getStyleClass().addAll("bottomshadow");
+        bottomshadow.setTranslateY(rowheights + 10);
+
 
         notch.setTranslateY(rowheights + 10);
 
-        keyName.getChildren().addAll(topLine, bottomLine, keyLabel);
+        keyName.getChildren().addAll(topLine, tophighlight, topshadow, bottomLine, bottomhighlight, bottomshadow, keyLabel);
         keyName.getChildren().addAll(notch);
 
 
