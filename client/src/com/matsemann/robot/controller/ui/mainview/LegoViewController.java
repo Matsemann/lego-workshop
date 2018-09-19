@@ -7,7 +7,6 @@ import com.matsemann.robot.controller.command.DefaultKeybindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.ToggleButton;
@@ -61,19 +60,13 @@ public class LegoViewController implements EventHandler<CommandEvent> {
 
         mainGrid.getChildren().clear();
 
-        mainGrid.add(new Label("Knapp"), 0, 0);
-        mainGrid.add(new Label("Når trykkes ned"), 1, 0);
-        mainGrid.add(new Label("Når slippes"), 2, 0);
-
-        int i = 1;
+        int i = 0;
         for (KeyEventCommands commands : keyEventCommands.values()) {
             Node downPane = new KeyBindPanel(commandHandler, commands, false);
             Node upPane = new KeyBindPanel(commandHandler, commands, true);
 
-            Pane namePane = new Pane(new Label(commands.key));
-            mainGrid.add(namePane, 0, i);
-            mainGrid.add(downPane, 1, i);
-            mainGrid.add(upPane, 2, i);
+            mainGrid.add(downPane, 0, i);
+            mainGrid.add(upPane, 1, i);
             i++;
         }
 

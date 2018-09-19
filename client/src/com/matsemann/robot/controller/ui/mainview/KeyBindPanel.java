@@ -23,7 +23,7 @@ public class KeyBindPanel extends StackPane {
 
         VBox commandsPanel = new VBox();
         commandsPanel.setSpacing(0);
-        commandsPanel.setPadding(new Insets(10, 30, 10, 0));
+        commandsPanel.setPadding(new Insets(10, 90, 10, 0));
 
         int i = 0;
         Notch notch = new Notch("default");
