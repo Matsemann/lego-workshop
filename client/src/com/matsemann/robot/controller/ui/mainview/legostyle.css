@@ -271,3 +271,28 @@
 .nothing .notch-border {
     -fx-stroke: #c3ebe3;
 }
+
+
+/* Motorstatus */
+.motorstatus .circle {
+    -fx-fill: #9f9f9f;
+    -fx-stroke: #747474;
+    -fx-stroke-width: 2px;
+}
+.motorstatus .line {
+    -fx-stroke: #5e5e5e;
+    -fx-stroke-width: 3px;
+}
+.motorstatus .label {
+    -fx-font-size: 16px;
+}
+.motorstatus .powerbg {
+    -fx-fill: #cbcbcb;
+    -fx-stroke: #7f7f7f;
+    -fx-stroke-width: 2px;
+    -fx-translate-y: 35;
+}
+.motorstatus .power {
+    -fx-fill: #62ff4c;
+    -fx-translate-y: 35;
+}

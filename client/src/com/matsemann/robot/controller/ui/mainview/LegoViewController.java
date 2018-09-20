@@ -11,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 import java.util.Map;
@@ -25,6 +26,7 @@ public class LegoViewController implements EventHandler<CommandEvent> {
     public Pane rightConsole;
     public GridPane mainGrid;
     public ScrollPane scrollPane;
+    public HBox robotStatusPane;
 
     private boolean hidden = true;
     private CommandHandler commandHandler;
@@ -36,6 +38,10 @@ public class LegoViewController implements EventHandler<CommandEvent> {
     public void setCommandHandler(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
         commandHandler.addListener(this);
+
+
+        robotStatusPane.getChildren().addAll(new MotorStatus("A"), new MotorStatus("B"));
+
         reset(null);
     }
 
