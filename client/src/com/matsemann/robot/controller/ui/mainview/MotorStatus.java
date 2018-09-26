@@ -27,7 +27,7 @@ public class MotorStatus extends StackPane {
         circle.getChildren().addAll(circleShape, line);
 
         Label label = new Label(motorName);
-        label.setTranslateY(-7);
+        label.setTranslateY(18);
 
         Rectangle powerBg = new Rectangle(60, 15);
         powerBg.getStyleClass().addAll("powerbg");
@@ -36,6 +36,7 @@ public class MotorStatus extends StackPane {
         setSpeed(50);
         setAngle(0);
 
+        setAlignment(Pos.TOP_CENTER);
         getChildren().addAll(circle, label, powerBg, power);
         getStyleClass().addAll("motorstatus");
 

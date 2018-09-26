@@ -13,6 +13,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public class LegoViewController implements EventHandler<CommandEvent> {
     public Pane rightConsole;
     public GridPane mainGrid;
     public ScrollPane scrollPane;
-    public HBox robotStatusPane;
+    public VBox robotStatusPane;
 
     private boolean hidden = true;
     private CommandHandler commandHandler;

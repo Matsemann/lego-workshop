@@ -274,6 +274,9 @@
 
 
 /* Motorstatus */
+.motorstatus {
+    -fx-pref-height: 80px;
+}
 .motorstatus .circle {
     -fx-fill: #9f9f9f;
     -fx-stroke: #747474;
@@ -290,9 +293,9 @@
     -fx-fill: #cbcbcb;
     -fx-stroke: #7f7f7f;
     -fx-stroke-width: 2px;
-    -fx-translate-y: 35;
+    -fx-translate-y: 65;
 }
 .motorstatus .power {
     -fx-fill: #62ff4c;
-    -fx-translate-y: 35;
+    -fx-translate-y: 67;
 }
