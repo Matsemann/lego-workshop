@@ -2,6 +2,7 @@ package com.matsemann.robot.controller;
 
 import com.matsemann.robot.controller.command.CommandHandler;
 import com.matsemann.robot.controller.command.DefaultKeybindings;
+import com.matsemann.robot.controller.robot.RobotHandler;
 import com.matsemann.robot.controller.ui.mainview.LegoViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,8 @@ import javafx.stage.Stage;
 
 public class LegoView extends Application {
 
+    private RobotHandler robotHandler;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -18,6 +21,10 @@ public class LegoView extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        robotHandler = new RobotHandler();
+        robotHandler.connect("10.0.50.115");
+        robotHandler.rotateA();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/mainview/MainView.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -49,6 +56,12 @@ public class LegoView extends Application {
         controller.setCommandHandler(commandHandler);
 
 
+    }
+
+    @Override
+    public void stop() throws Exception {
+        System.out.println("Closing");
+        robotHandler.disconnect();
     }
 
 }
