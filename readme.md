@@ -1,1 +1,3 @@
 # Lego
+
+![screenshot](screenshot.png)
