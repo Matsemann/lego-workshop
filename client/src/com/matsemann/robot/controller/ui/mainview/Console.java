@@ -1,6 +1,7 @@
 package com.matsemann.robot.controller.ui.mainview;
 
 import com.matsemann.robot.controller.Logger;
+import javafx.application.Platform;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -21,7 +22,7 @@ public class Console extends TextFlow implements Logger.LogView {
     public void handleMessage(String msg, String level) {
         System.out.println(consolePane.getVvalue());
 
-        Text text = new Text(msg + "\n") ;
+        Text text = new Text(msg + "\n");
         text.getStyleClass().addAll(level.toLowerCase());
 
         getChildren().add(text);
@@ -29,8 +30,16 @@ public class Console extends TextFlow implements Logger.LogView {
             getChildren().remove(0);
         }
 
-        if (consolePane.getVvalue() >= 0.95) {
-            consolePane.setVvalue(1);
-        }
+
+        new Thread(() -> {
+            try {
+                Thread.sleep(20);
+                Platform.runLater(() -> {
+                    consolePane.setVvalue(1);
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 }
