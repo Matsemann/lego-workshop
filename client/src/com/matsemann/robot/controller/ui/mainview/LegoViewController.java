@@ -1,5 +1,6 @@
 package com.matsemann.robot.controller.ui.mainview;
 
+import com.matsemann.robot.controller.Logger;
 import com.matsemann.robot.controller.command.CommandHandler;
 import com.matsemann.robot.controller.command.CommandHandler.CommandEvent;
 import com.matsemann.robot.controller.command.CommandHandler.KeyEventCommands;
@@ -11,8 +12,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.util.Map;
@@ -22,9 +21,7 @@ public class LegoViewController implements EventHandler<CommandEvent> {
 
     public ToggleButton consoleToggle;
     public SplitPane mainSplitPane;
-    public SplitPane consolePane;
-    public Pane leftConsole;
-    public Pane rightConsole;
+    public ScrollPane consolePane;
     public GridPane mainGrid;
     public ScrollPane scrollPane;
     public VBox robotStatusPane;
@@ -34,6 +31,7 @@ public class LegoViewController implements EventHandler<CommandEvent> {
 
     public void initialize() {
         mainSplitPane.getItems().remove(consolePane);
+        consolePane.setContent(new Console(consolePane));
     }
 
     public void setCommandHandler(CommandHandler commandHandler) {
@@ -60,7 +58,6 @@ public class LegoViewController implements EventHandler<CommandEvent> {
 
     @Override
     public void handle(CommandEvent notused) {
-        System.out.println("changes detected, redrawing");
         Map<String, KeyEventCommands> keyEventCommands = commandHandler.getKeyEventCommands();
 
         double scrollPos = scrollPane.getVvalue();
@@ -89,6 +86,7 @@ public class LegoViewController implements EventHandler<CommandEvent> {
     }
 
     public void reset(ActionEvent actionEvent) {
+        Logger.ok("Resetting keybindings");
         new DefaultKeybindings(commandHandler).resetKeybindings();
     }
 

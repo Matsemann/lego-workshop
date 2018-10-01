@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.matsemann.robot.controller.ui.mainview.LegoViewController">
     <children>
         <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -48,20 +34,7 @@
                        </VBox>
                      </right>
                   </BorderPane>
-                        <SplitPane fx:id="consolePane" dividerPositions="0.5">
-                            <items>
-                                <Pane fx:id="leftConsole">
-                                    <children>
-                                        <Label text="Balla" />
-                                    </children>
-                                </Pane>
-                                <Pane fx:id="rightConsole">
-                                    <children>
-                                        <Label text="Halla" />
-                                    </children>
-                                </Pane>
-                            </items>
-                        </SplitPane>
+                  <ScrollPane prefHeight="200.0" fx:id="consolePane" />
                     </items>
                 </SplitPane>
             </center>

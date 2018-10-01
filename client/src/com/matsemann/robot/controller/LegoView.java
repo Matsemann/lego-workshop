@@ -15,6 +15,7 @@ public class LegoView extends Application {
     private RobotHandler robotHandler;
 
     public static void main(String[] args) {
+        System.out.println(Thread.currentThread().getName());
         launch(args);
     }
 
@@ -22,8 +23,7 @@ public class LegoView extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         robotHandler = new RobotHandler();
-        robotHandler.connect("10.0.50.115");
-        robotHandler.rotateA();
+//        robotHandler.connect("10.0.50.115");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/mainview/MainView.fxml"));
         Parent root = loader.load();
@@ -45,8 +45,9 @@ public class LegoView extends Application {
 
             String c = commandHandler.getCommandStringForButtonPress(key, keyUp);
             if (c != null) {
-                System.out.println(c); // do something
+                Logger.info(c);
             }
+
         });
 
         scene.setOnKeyPressed(keyHandler);
@@ -60,7 +61,7 @@ public class LegoView extends Application {
 
     @Override
     public void stop() throws Exception {
-        System.out.println("Closing");
+        Logger.ok("Closing down");
         robotHandler.disconnect();
     }
 

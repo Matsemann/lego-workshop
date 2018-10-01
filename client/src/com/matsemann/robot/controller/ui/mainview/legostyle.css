@@ -299,3 +299,16 @@
     -fx-fill: #62ff4c;
     -fx-translate-y: 67;
 }
+
+
+.console {
+}
+.console .info {
+    -fx-fill: black;
+}
+.console .ok {
+    -fx-fill: #006100;
+}
+.console .error {
+    -fx-fill: #630000;
+}
