@@ -1,5 +1,8 @@
 package com.matsemann.robot.controller.command;
 
+import com.matsemann.robot.controller.Logger;
+import com.matsemann.robot.controller.robot.Robot;
+
 import java.util.List;
 
 import static java.util.Collections.emptyList;
@@ -25,8 +28,10 @@ public class EmptyCommand implements ControlCommand {
         return null;
     }
 
+
+
     @Override
-    public String getRobotCommand() {
-        return "";
+    public void execute(Robot robot) throws Exception {
+        Logger.info("nothing: nothing");
     }
 }

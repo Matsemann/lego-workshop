@@ -2,6 +2,7 @@ package com.matsemann.robot.controller;
 
 import com.matsemann.robot.controller.command.CommandHandler;
 import com.matsemann.robot.controller.command.DefaultKeybindings;
+import com.matsemann.robot.controller.robot.Robot;
 import com.matsemann.robot.controller.robot.RobotHandler;
 import com.matsemann.robot.controller.ui.mainview.LegoViewController;
 import javafx.application.Application;
@@ -43,11 +44,15 @@ public class LegoView extends Application {
             boolean keyUp = event.getEventType().getName().equals("KEY_RELEASED");
             String key = event.getCode().getName();
 
-            String c = commandHandler.getCommandStringForButtonPress(key, keyUp);
-            if (c != null) {
-                Logger.info(c);
-            }
+            Logger.ok("Got key event: " + key + " " + (keyUp ? "up" : "down"));
 
+            Robot robot = robotHandler.getRobot();
+
+            if (robot != null) {
+                commandHandler.executeCommandsForKeyPress(key, keyUp, robot);
+            } else {
+                Logger.info("Not executing, not connected");
+            }
         });
 
         scene.setOnKeyPressed(keyHandler);

@@ -1,5 +1,7 @@
 package com.matsemann.robot.controller.command;
 
+import com.matsemann.robot.controller.robot.Robot;
+
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -50,7 +52,19 @@ public class MoveControlCommand implements ControlCommand {
     }
 
     @Override
-    public String getRobotCommand() {
-        return getName() + ":" + motor + ":" + angle;
+    public void execute(Robot robot) throws Exception {
+        robot.execute(motor, (motor, name) -> {
+            if (angle == null) {
+                return;
+            }
+            if (angle.equals("forwards")) {
+                motor.forward();
+            } else if (angle.equals("backwards")) {
+                motor.backward();
+            } else if (!angle.isEmpty()) {
+                int angleInt = Integer.parseInt(angle);
+                motor.rotate(angleInt, true);
+            }
+        });
     }
 }

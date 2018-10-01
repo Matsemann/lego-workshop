@@ -1,5 +1,7 @@
 package com.matsemann.robot.controller.command;
 
+import com.matsemann.robot.controller.Logger;
+import com.matsemann.robot.controller.robot.Robot;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -17,17 +19,22 @@ public class CommandHandler {
 
     private List<EventHandler<CommandEvent>> listeners = new ArrayList<>();
 
-    public String getCommandStringForButtonPress(String keypress, boolean keyUp) {
-        if (!keyEventCommands.containsKey(keypress)) {
-            return null;
+    public void executeCommandsForKeyPress(String key, boolean keyUp, Robot robot) {
+        if (!keyEventCommands.containsKey(key)) {
+            Logger.error("No keybindings found for " + key);
+            return;
         }
 
-        KeyEventCommands keyCommands = keyEventCommands.get(keypress);
+        KeyEventCommands keyCommands = this.keyEventCommands.get(key);
+        List<ControlCommand> commands = keyUp ? keyCommands.upCommands : keyCommands.downCommands;
 
-        return (keyUp ? keyCommands.upCommands : keyCommands.downCommands).stream()
-                .filter(command -> !(command instanceof EmptyCommand))
-                .map(ControlCommand::getRobotCommand)
-                .collect(Collectors.joining("|"));
+        try {
+            for (ControlCommand command : commands) {
+                command.execute(robot);
+            }
+        } catch (Exception e) {
+            Logger.error("Some commands failed: ", e);
+        }
     }
 
     public void addCommandToButton(String keypress, boolean keyUp, ControlCommand command) {

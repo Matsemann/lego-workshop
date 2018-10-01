@@ -1,5 +1,8 @@
 package com.matsemann.robot.controller.command;
 
+import com.matsemann.robot.controller.Logger;
+import com.matsemann.robot.controller.robot.Robot;
+
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -39,8 +42,13 @@ public class StopControlCommand implements ControlCommand {
         return motor;
     }
 
+
+
     @Override
-    public String getRobotCommand() {
-        return getName() + ":" + motor;
+    public void execute(Robot robot) throws Exception {
+        robot.execute(motor, (motor, name) -> {
+            motor.stop(true);
+            Logger.info("stop: stopped motor " + name);
+        });
     }
 }

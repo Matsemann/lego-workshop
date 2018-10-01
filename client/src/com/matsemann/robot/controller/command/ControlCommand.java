@@ -1,5 +1,7 @@
 package com.matsemann.robot.controller.command;
 
+import com.matsemann.robot.controller.robot.Robot;
+
 import java.util.List;
 
 public interface ControlCommand {
@@ -12,7 +14,7 @@ public interface ControlCommand {
 
     String getOption(String name);
 
-    String getRobotCommand();
+    void execute(Robot robot) throws Exception;
 
 
     class Option {

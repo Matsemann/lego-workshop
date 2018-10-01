@@ -36,6 +36,11 @@ public class Logger {
         logger.log(msg, ERROR);
     }
 
+    public static void error(String msg, Exception e) {
+        logger.log(msg + e.getMessage(), ERROR);
+        e.printStackTrace();
+    }
+
     public interface LogView {
         void handleMessage(String msg, String level);
     }

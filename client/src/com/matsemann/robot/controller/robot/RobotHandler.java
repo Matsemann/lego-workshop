@@ -11,53 +11,51 @@ import java.rmi.RemoteException;
 public class RobotHandler {
 
     private RemoteEV3 remoteEV3;
-    private RMIRegulatedMotor a, b, c, d;
+    private Robot robot;
 
     public void connect(String ip) {
-        if (remoteEV3 != null) {
+        if (robot != null) {
             disconnect();
         }
         Logger.info("Connecting to robot with IP " + ip);
 
         try {
             remoteEV3 = new RemoteEV3(ip);
-            a = remoteEV3.createRegulatedMotor("A", 'L');
-            b = remoteEV3.createRegulatedMotor("B", 'L');
-            c = remoteEV3.createRegulatedMotor("C", 'L');
-            d = remoteEV3.createRegulatedMotor("D", 'L');
+            robot = new Robot(
+                    remoteEV3.createRegulatedMotor("A", 'L'),
+                    remoteEV3.createRegulatedMotor("B", 'L'),
+                    remoteEV3.createRegulatedMotor("C", 'L'),
+                    remoteEV3.createRegulatedMotor("D", 'L')
+            );
             Logger.ok("Successfully connected to robot " + ip);
         } catch (RemoteException | MalformedURLException | NotBoundException e) {
-            Logger.error("Couldn't connect to robot " + ip + ", error: " + e.getMessage());
+            Logger.error("Couldn't connect to robot " + ip + ", error: ", e);
         }
 
+    }
+
+    public Robot getRobot() {
+        return robot;
     }
 
     public void disconnect() {
         Logger.info("Disconnecting from robot");
-        if (remoteEV3 == null) {
+        if (robot == null) {
             Logger.info("No active robot to disconnect from");
             return;
         }
 
-        remoteEV3 = null;
         try {
-            a.close();
-            b.close();
-            c.close();
-            d.close();
+            for (RMIRegulatedMotor motor : robot.getAllMotors()) {
+                motor.close();
+            }
             Logger.ok("Successfully disconnected from robot");
         } catch (RemoteException e) {
-            Logger.error("Failed disconnecting: " + e.getMessage());
+            Logger.error("Failed disconnecting: ", e);
+        } finally {
+            robot = null;
+            remoteEV3 = null;
         }
     }
-
-    public void rotateA() {
-        try {
-            a.forward();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-
 
 }
