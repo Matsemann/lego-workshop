@@ -24,7 +24,6 @@ public class LegoViewController implements EventHandler<CommandEvent> {
     public ScrollPane consolePane;
     public GridPane mainGrid;
     public ScrollPane scrollPane;
-    public VBox robotStatusPane;
 
     private boolean hidden = true;
     private CommandHandler commandHandler;
@@ -37,9 +36,6 @@ public class LegoViewController implements EventHandler<CommandEvent> {
     public void setCommandHandler(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
         commandHandler.addListener(this);
-
-
-        robotStatusPane.getChildren().addAll(new MotorStatus("A"), new MotorStatus("B"));
 
         reset(null);
     }

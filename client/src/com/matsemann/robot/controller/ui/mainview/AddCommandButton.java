@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 public class AddCommandButton extends HBox {
 
     public AddCommandButton(Runnable onAdd) {
-        Button plus = new Button("➕");
+        Button plus = new Button("+");
         plus.setOnAction(event -> {
             onAdd.run();
         });

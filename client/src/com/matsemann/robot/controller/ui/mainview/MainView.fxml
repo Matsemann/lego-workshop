@@ -14,8 +14,8 @@
                               <ScrollPane fx:id="scrollPane" fitToWidth="true" BorderPane.alignment="CENTER">
                                   <GridPane fx:id="mainGrid">
                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="ALWAYS" maxWidth="600" minWidth="520" prefWidth="520" />
-                                          <ColumnConstraints hgrow="ALWAYS" maxWidth="600" minWidth="520" prefWidth="520" />
+                                          <ColumnConstraints hgrow="ALWAYS" maxWidth="600" minWidth="550" prefWidth="550" />
+                                          <ColumnConstraints hgrow="ALWAYS" maxWidth="600" minWidth="550" prefWidth="550" />
                                       </columnConstraints>
                                       <rowConstraints>
                                           <RowConstraints />
@@ -26,13 +26,6 @@
                                   </GridPane>
                               </ScrollPane>
                      </center>
-                     <right>
-                        <VBox fx:id="robotStatusPane" prefHeight="80.0" spacing="20.0" BorderPane.alignment="CENTER">
-                           <BorderPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </BorderPane.margin>
-                       </VBox>
-                     </right>
                   </BorderPane>
                   <ScrollPane prefHeight="200.0" fx:id="consolePane" />
                     </items>
