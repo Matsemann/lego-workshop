@@ -10,6 +10,7 @@ public class CommandCreator {
     public static final List<Class<? extends ControlCommand>> COMMANDS = asList(
             EmptyCommand.class,
             MoveControlCommand.class,
+            SpeedControlCommand.class,
             ResetControlCommand.class,
             StopControlCommand.class
     );

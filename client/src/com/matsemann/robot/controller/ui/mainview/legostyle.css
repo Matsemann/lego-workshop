@@ -273,6 +273,31 @@
 }
 
 
+.command.speed {
+    -fx-background-color: #56916d;
+    -fx-border-color: #c3ebe3 #447a5a #447a5a #c3ebe3;
+}
+
+.speed .combo-box {
+    /*-fx-border-color: #447a5a #c3ebe3 #c3ebe3 #447a5a;*/
+    -fx-border-color: #447a5a #c3ebe3 #c3ebe3 #447a5a;
+}
+
+.speed .combo-box-popup .list-cell {
+    -fx-background-color: #447a5a;
+}
+.notch.speed {
+    -fx-fill: #56916d;
+    -fx-stroke: #447a5a;
+}
+.notchfill.speed {
+    -fx-stroke: #56916d;
+}
+.speed .notch-border {
+    -fx-stroke: #c3ebe3;
+}
+
+
 /* Motorstatus */
 .motorstatus {
     -fx-pref-height: 80px;

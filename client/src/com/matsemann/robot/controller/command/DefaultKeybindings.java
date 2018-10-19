@@ -28,7 +28,7 @@ public class DefaultKeybindings {
         commandHandler.addCommandToButton("D", true, new StopControlCommand("A"));
 
 
-        commandHandler.addCommandToButton("Q", false, new MoveControlCommand("C", "forwards"));
+        commandHandler.addCommandToButton("Q", false, new SpeedControlCommand("all", "50%"));
         commandHandler.addCommandToButton("E", false, new MoveControlCommand("D", "45"));
 
         commandHandler.addCommandToButton("Z", false, new StopControlCommand("all"));

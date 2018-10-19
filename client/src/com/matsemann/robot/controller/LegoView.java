@@ -24,7 +24,7 @@ public class LegoView extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         robotHandler = new RobotHandler();
-//        robotHandler.connect("10.0.50.47");
+//        robotHandler.connect("192.168.0.220");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/mainview/MainView.fxml"));
         Parent root = loader.load();
